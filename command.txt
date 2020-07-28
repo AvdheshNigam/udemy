@@ -1,0 +1,257 @@
+https://stackoverflow.com/questions/11928013/node-env-is-not-recognized-as-an-internal-or-external-command-operable-comman
+67.
+npm install -g win-node-env
+
+NODE_ENV=development nodemon server.js
+
+npm install dotenv ---> for config.env file 
+    OR 
+npm i dotenv
+
+======================================================
+npm run start:prod
+
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
+------------------------------------------------------
+D:\Udemy\NodeJS\4-natours>npm run start:prod
+-------------------------------------------------------
+> NODE_ENV=production nodemon server.js
+
+[nodemon] 2.0.4
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node server.js`
+production
+App is running on 3000...
+Hello from the middleware
+=========================================================
+
+"start:prod": "set NODE_ENV=production && nodemon server.js" -> Udemy
+
+----------------------------------------------------------
+D:\Udemy\NodeJS\4-natours>npm run start:dev
+----------------------------------------------------------
+> natours@1.0.0 start:dev D:\Udemy\NodeJS\4-natours
+> nodemon server.js
+
+[nodemon] 2.0.4
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node server.js`
+development
+App is running on 3000...
+Hello from the middleware
+GET /api/v1/users/ 500 10.805 ms - 60
+
+===========================
+
+
+
+
+eslint 
+prettier
+
+npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react --save-dev
+
+// 81.
+npm i mongoose@5
+
+
+
+//93. importants
+
+>node dev-data/data/import-dev-data.js
+>node dev-data/data/import-dev-data.js --import
+>node dev-data/data/import-dev-data.js --delete
+
+
+// 95. req.query of filter data
+
+http://localhost:3000/api/v1/tours?difficulty=easy&duration[gte]=5&price[lt]=1500
+
+SORT PRICE 1 2 3
+http://localhost:3000/api/v1/tours?sort=price
+
+SORT PRICE 3 2 1
+http://localhost:3000/api/v1/tours?sort=-price                  --> -price (minus) NOTE
+
+
+// 97.
+LIMITING FIELDS
+http://localhost:3000/api/v1/tours?fields=name,duration,price    --> query.select('name duration price')
+
+http://localhost:3000/api/v1/tours?fields=-name,-duration       --> name and duration is not display and all key are will display in json file in postman.
+
+
+select: false --> set --> not display in json file -->
+its used for hiding the key like password, created date etc.
+
+
+// 99.
+http://localhost:3000/api/v1/tours/top-5-cheap  --> middleware function which run getAllTours handler
+
+//
+// 108
+https://github.com/validatorjs/validator.js?files=1
+
+npm i validator
+
+
+
+//110 NODE DEBUGGER - NDB
+> npm i ndb --global
+
+"scripts": { 
+        "start": "nodemon server.js",
+        "start:prod": "NODE_ENV=production nodemon server.js",
+        "debug": "ndb server.js"                                -----> // WRITE HERE
+    },
+
+> npm run ndb
+
+
+// 126
+npm i bcryptjs
+
+// 128
+
+npm i jsonwebtoken
+
+// 135
+npm i nodemailer
+
+// 142 
+npm i express-rate-limit
+
+// 143
+
+npm i helmet
+
+// 144 
+npm i express-mongo-sanitize
+npm i xss-clean
+
+// 145
+npm i hpp
+
+// 175
+npm i pug
+
+// 182 error in video
+span= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+
+// 188
+npm i cookie-parser
+
+// 190 
+npm i parcel-bundler@1 --save-dev
+
+"watch:js" : "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+"build:js" : "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+
+npm run watch:js
+  and
+npm start
+
+npm i axios
+
+npm i @babel/polifill
+
+==========================================================================================================
+
+reviews: null not showing in 156, 165 and 166 -> {{URL}}api/v1/tours
+
+168 console not showing
+
+
+"start:prod": "set NODE_ENV=production && nodemon server.js" -> udeny solution
+
+npm  run start -prod -google
+
+
+
+-------------
+NODE_ENV=production nodemon server.js
+npm run start -prod
+npm start -prod
+
+set NODE_ENV=production && nodemon server.js
+--------------------
+
+
+
+
+
+
+
+
+==============
+https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/learn/lecture/15065684#questions/9637334
+
+=========\\
+
+App running on port 3000.....
+DB connection successful!
+[Object: null prototype] {}
+[Object: null prototype] {}
+[Object: null prototype] {}
+Query took 132 milliseconds!
+
+That is because we put a security mesure for the production mode in "http" not allowing to save cookies, only if we are in "https" connections.
+So, to solve the login, you can comment out the security mesure in authController.js:
+if (process.env.NODE_ENV === 'production') cookiesOptions.secure = true;
+
+(But I think that you should do that only for testing in production and activate it again for security)
+
+And to solve the message on the console (that we put it there just to see the cookie on the console), comment or delete this console.log(req.cookies) from this code in app.js:
+
+ // Test middleware
+app.use((req, res, next) => {
+    req.requestTime = new Date().toISOString();
+    console.log(req.cookies)
+    next();
+});
+
+
+
+here is full code.. not a for specific video code.. so i can compare but not use in current video tutorial.. your are getting me what i m saying.. github code is just for ref and good for when your are complete complete this course.
+
+My github repository link 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===========
+google search
+https://gis.stackexchange.com/questions/271602/show-popup-on-marker-hover-mouseover-hide-on-mouseout-and-keep-open-on-click
+
+==============
+
+
+////////ERROR////////////
+App is running on 3000...
+DB Connection Error MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/
+at NativeConnection.Connection.openUri (D:\Udemy\NodeJS\4-natours\node_modules\mongoose\lib\connection.js:830:32)
+
+
+
+
+
+
